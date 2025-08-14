@@ -11,10 +11,8 @@ This project implements an **Artificial Neural Network (ANN)** to predict **cust
 
 The live Streamlit app allows users to **input customer details** and receive real-time churn probability predictions.
 
-## 🔹 Live Demo
-
-Try the model here: Customer Churn Prediction App
-
+ ## Live App
+[Customer Churn Prediction](https://ann-classification-churn2025.streamlit.app/)
 ---
 
 ## 🔹 Features
