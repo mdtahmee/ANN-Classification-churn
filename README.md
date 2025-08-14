@@ -1,26 +1,29 @@
-# Customer Churn Prediction Using ANN
+# 🚀 Customer Churn Prediction Using ANN
 
-[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://ann-classification-churn2025.streamlit.app/)
+[![Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://ann-classification-churn2025.streamlit.app/)  
+[![Python](https://img.shields.io/badge/Python-3.10-blue)](https://www.python.org/)  
+[![TensorFlow](https://img.shields.io/badge/TensorFlow-2.15.0-orange)](https://www.tensorflow.org/)  
+[![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
 
 ---
 
 ## 🔹 Project Overview
 
-This project uses an **Artificial Neural Network (ANN)** to predict customer churn for a bank. By analyzing customer data, the model estimates the probability of a customer leaving the bank.  
+This project implements an **Artificial Neural Network (ANN)** to predict **customer churn** for a bank. The model evaluates customer data and predicts the probability of a customer leaving.  
 
-The model is trained using features like credit score, geography, gender, balance, tenure, number of products, and more.
+The live Streamlit app allows users to **input customer details** and receive real-time churn probability predictions.
 
-You can test the live app here: [Customer Churn Prediction App](https://ann-classification-churn2025.streamlit.app/)
+**Live App:** [Customer Churn Prediction](https://ann-classification-churn2025.streamlit.app/)
 
 ---
 
 ## 🔹 Features
 
-- User-friendly **Streamlit interface** for real-time predictions.
-- Predicts **churn probability** and gives actionable insight.
-- Handles **categorical features** using one-hot encoding and label encoding.
-- **Scales numerical features** for accurate ANN predictions.
-- Customizable input parameters for testing various customer profiles.
+- Interactive **Streamlit interface** for real-time predictions.
+- Calculates **churn probability** and provides actionable insights.
+- Handles **categorical variables** via **one-hot encoding** and **label encoding**.
+- Automatically **scales numerical features** for better ANN performance.
+- User-friendly input for testing different customer profiles.
 
 ---
 
@@ -33,11 +36,21 @@ You can test the live app here: [Customer Churn Prediction App](https://ann-clas
 | Gender | Male/Female |
 | Age | Age of the customer |
 | Tenure | Number of years as a customer |
-| Balance | Account balance |
-| NumOfProducts | Number of products subscribed |
-| HasCrCard | Whether customer has a credit card |
-| IsActiveMember | Whether customer is an active member |
+| Balance | Account balance in the bank |
+| NumOfProducts | Number of bank products subscribed |
+| HasCrCard | Whether customer has a credit card (0/1) |
+| IsActiveMember | Whether the customer is an active member (0/1) |
 | EstimatedSalary | Estimated annual salary |
+
+---
+
+## 🔹 Model Architecture
+
+- **Input Layer:** 11 features (after encoding)
+- **Hidden Layers:** 2 layers with ReLU activation
+- **Output Layer:** 1 neuron with Sigmoid activation (churn probability)
+- **Optimizer:** Adam
+- **Loss Function:** Binary Crossentropy
 
 ---
 
@@ -47,13 +60,36 @@ You can test the live app here: [Customer Churn Prediction App](https://ann-clas
 - TensorFlow / Keras  
 - Scikit-learn  
 - Pandas & NumPy  
-- Streamlit for interactive web app  
+- Streamlit  
 
 ---
 
-## 🔹 How to Run Locally
+## 🔹 Example Usage
 
-1. Clone the repository:
-```bash
-git clone https://github.com/mdtahmee/ANN-Classification-churn.git
+```python
+import streamlit as st
+import pandas as pd
+from tensorflow.keras.models import load_model
+from sklearn.preprocessing import StandardScaler
 
+# Load model and scaler
+model = load_model('model.h5')
+scaler = StandardScaler()
+
+# Example input
+input_data = pd.DataFrame({
+    'CreditScore': [600],
+    'Gender': [0],  # Male
+    'Age': [40],
+    'Tenure': [3],
+    'Balance': [60000],
+    'NumOfProducts': [2],
+    'HasCrCard': [1],
+    'IsActiveMember': [1],
+    'EstimatedSalary': [50000]
+})
+
+# Scale and predict
+input_scaled = scaler.transform(input_data)
+prediction = model.predict(input_scaled)
+print(f'Churn Probability: {prediction[0][0]:.2f}')
