@@ -3,8 +3,6 @@
 [![Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://ann-classification-churn2025.streamlit.app/)  
 [![Python](https://img.shields.io/badge/Python-3.10-blue)](https://www.python.org/)  
 [![TensorFlow](https://img.shields.io/badge/TensorFlow-2.15.0-orange)](https://www.tensorflow.org/)  
-[![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
-
 ---
 
 ## 🔹 Project Overview
@@ -13,7 +11,9 @@ This project implements an **Artificial Neural Network (ANN)** to predict **cust
 
 The live Streamlit app allows users to **input customer details** and receive real-time churn probability predictions.
 
-**Live App:** [Customer Churn Prediction](https://ann-classification-churn2025.streamlit.app/)
+## 🔹 Live Demo
+
+Try the model here: Customer Churn Prediction App
 
 ---
 
@@ -63,33 +63,7 @@ The live Streamlit app allows users to **input customer details** and receive re
 - Streamlit  
 
 ---
-
-## 🔹 Example Usage
-
-```python
-import streamlit as st
-import pandas as pd
-from tensorflow.keras.models import load_model
-from sklearn.preprocessing import StandardScaler
-
-# Load model and scaler
-model = load_model('model.h5')
-scaler = StandardScaler()
-
-# Example input
-input_data = pd.DataFrame({
-    'CreditScore': [600],
-    'Gender': [0],  # Male
-    'Age': [40],
-    'Tenure': [3],
-    'Balance': [60000],
-    'NumOfProducts': [2],
-    'HasCrCard': [1],
-    'IsActiveMember': [1],
-    'EstimatedSalary': [50000]
-})
-
-# Scale and predict
-input_scaled = scaler.transform(input_data)
-prediction = model.predict(input_scaled)
-print(f'Churn Probability: {prediction[0][0]:.2f}')
+```
+## Author
+Md Tahmeed
+Email: mdtahmeed2003@gmail.com
